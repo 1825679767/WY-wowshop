@@ -1,0 +1,24 @@
+# 设置适当的 Cache-Control 头部
+<FilesMatch "\.(html|htm|js|css|woff2)$">
+    Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>
+
+# 移除 Expires 头部
+<IfModule mod_expires.c>
+    ExpiresActive Off
+</IfModule>
+
+# 设置 Content-Security-Policy 头部，包括 frame-ancestors 指令
+Header set Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; frame-ancestors 'none';"
+
+# 移除 X-Frame-Options 头部（如果有的话）
+Header unset X-Frame-Options
+
+# 移除 X-XSS-Protection 头部
+Header unset X-XSS-Protection
+
+# 允许访问 CSS 和 JS 文件
+<FilesMatch "\.(css|js)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>

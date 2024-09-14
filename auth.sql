@@ -19,6 +19,9 @@ CREATE TABLE 商品信息 (
     价格 DECIMAL(10, 2) NOT NULL
 );
 
+ALTER TABLE `account`
+ADD COLUMN IF NOT EXISTS `JinBi` INT DEFAULT 0;
+
 
 INSERT INTO 商品信息 (商品ID, 分类, 图片, 名称, 描述, 数量, 价格) VALUES
 (2454, '武器', '/static/lb.png', '寒冰之刃', '一把散发着寒气的魔法剑', 10, 1000.00),
